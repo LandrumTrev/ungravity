@@ -1,20 +1,58 @@
-var express = require("express");
+// ITEMS_CONTROLLER.JS
+// required as "routes" by server.js
+// controls the results returned by calls on defined routes
 
+
+// REQUIRE EXPRESS:
+// ========================================================
+// require the Express server to use its methods
+var express = require("express");
+// also require Express' Router to use Express Router methods
 var router = express.Router();
 
-// Import the model (item.js) to use its database functions.
+
+// REQUIRE ITEM:
+// ========================================================
+// to access item.methods, which call orm.methods with specific args:
+// allows orm.methods to be flexibly generic and reused by other models
 var item = require("../models/item.js");
 
-// // Create all our routes and set up logic within those routes where required.
-// router.get("/", function(req, res) {
-//   item.all(function(data) {
-//     var hbsObject = {
-//       items: data
-//     };
-//     console.log(hbsObject);
-//     res.render("index", hbsObject);
-//   });
-// });
+
+// DEFINE ROUTES:
+// ========================================================
+
+// GET route listens for calls on the home page (domain/index) route "/"
+// and also defines a callback function(req, res)
+// that tells Express server what to do with both incoming data (req), 
+// and how to respond (res) to a call on that route
+router.get("/", function (req, res) {
+
+    // call the item.selectAll(cb) and pass in a function.
+    // (data) in function(data) is returned by item.selectAll() as cb(res)
+    // which is given to item.selectAll() by orm.selectAll() as cb(result)
+    item.selectAll(function (data) {
+
+        // create an object with "items" as key: name,
+        // and rows returned: orm (result) > model (res) > route (data)
+        // as the :value of the items: key in the hbsObject
+        var hbsObject = {
+            items: data
+        };
+
+        // console the hbsObject to see all data returned
+        console.log(hbsObject);
+
+        // then as the result (res) of router.get("/", ...),
+        // .render index.handlebars and include the hbsObject returned data
+        res.render("index", hbsObject);
+
+    }); // end item.selectAll(cb) called by router.get()
+
+}); // end router.get() controller for "/"
+
+
+// ========================================================
+
 
 // router.post("/api/items", function(req, res) {
 //   item.create([
@@ -26,6 +64,10 @@ var item = require("../models/item.js");
 //     res.json({ id: result.insertId });
 //   });
 // });
+
+
+// ========================================================
+
 
 // router.put("/api/items/:id", function(req, res) {
 //   var condition = "id = " + req.params.id;
@@ -44,6 +86,10 @@ var item = require("../models/item.js");
 //   });
 // });
 
+
+// ========================================================
+
+
 // router.delete("/api/items/:id", function(req, res) {
 //   var condition = "id = " + req.params.id;
 
@@ -56,6 +102,10 @@ var item = require("../models/item.js");
 //     }
 //   });
 // });
+
+
+// ========================================================
+
 
 // Export routes for server.js to use.
 module.exports = router;
