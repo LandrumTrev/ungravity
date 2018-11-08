@@ -18,15 +18,19 @@ var connection = require("../config/connection.js");
 // The above helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
 // ["?", "?", "?"].toString() => "?,?,?";
 
-// function printQuestionMarks(num) {
-//   var arr = [];
+// helper function for orm.insertOne() function
+// function takes in (num), 
+function printQuestionMarks(num) {
 
-//   for (var i = 0; i < num; i++) {
-//     arr.push("?");
-//   }
+  // intialize an empty array
+  var arr = [];
 
-//   return arr.toString();
-// }
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+
+  return arr.toString();
+}
 
 
 // ========================================================
@@ -65,6 +69,8 @@ var connection = require("../config/connection.js");
 
 var orm = {
 
+
+  // orm.selectAll(table, cb)
   // ========================================================
 
   // selectAll(table, cb) selects all table rows from a passed in table name
@@ -98,16 +104,24 @@ var orm = {
 
   // ========================================================
 
-  // creates a new item in a table
-  // pass in table name, columns, values, cb?
+
+
+  // orm.insertOne(table, cols, vals, cb)
+  // ========================================================
+
+  // called by item.insertOne(cols, vals, cb) in item.js
+  // creates a new row item in a table
+  // pass in the table name, column names, column field values, and callback
+  // todolist.js defines (vals), items_controller.js defines (cols),
+  // and item.js defines (table) and callback function (cb)
   insertOne: function (table, cols, vals, cb) {
 
-    // initialize a queryString value with the table name...
+    // construct a database query using the passed in table name (item.js),
     var queryString = "INSERT INTO " + table;
 
-    // build a queryString to pass into the db call
+    // then add more conditions to the string using += to tack onto end
     queryString += " (";
-    // make the cols data (an array?) into a String
+    // make the (cols) Array into a String in parentheses
     queryString += cols.toString();
     queryString += ") ";
     queryString += "VALUES (";
@@ -117,7 +131,9 @@ var orm = {
     queryString += ") ";
 
     // log the queryString to check it
-    console.log(queryString);
+    // console.log(queryString);
+    // log the queryString to check it
+    // console.log(vals);
 
     // make db connection and pass it the queryString and column field values of item to add
     connection.query(queryString, vals, function (err, result) {
@@ -128,6 +144,10 @@ var orm = {
       cb(result);
     });
   },
+
+
+  // ========================================================
+
 
   // update an existing table row item
   // pass in the table name and an object of key:value pairs
@@ -160,6 +180,7 @@ var orm = {
     });
   },
 
+  // ========================================================
 
   //   delete: function(table, condition, cb) {
   //     var queryString = "DELETE FROM " + table;

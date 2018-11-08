@@ -53,17 +53,37 @@ router.get("/", function (req, res) {
 
 // ========================================================
 
+// POST takes new item from HTML, makes an object, and creates new row in database
+// route posted to with submit button handler in public/assets/js/todolist.js
+router.post("/api/items", function (req, res) {
 
-// router.post("/api/items", function(req, res) {
-//   item.create([
-//     "name", "sleepy"
-//   ], [
-//     req.body.name, req.body.sleepy
-//   ], function(result) {
-//     // Send back the ID of the new quote
-//     res.json({ id: result.insertId });
-//   });
-// });
+    // String "false" needs to be converted to Boolean false
+    var doneBoolean = JSON.parse(req.body.done);
+
+    // call the item.insertOne(cols, vals, cb) method from item.js
+    item.insertOne([
+
+        // pass in (cols), the column names (an array) with hard-coded values
+        "item", "done"
+    ], [
+        // also pass in (vals), form values of item: and done: from todolist.js
+        // use converted doneBoolean (false) instead of req.body.done ("false")
+        req.body.item, doneBoolean
+
+        // and pass in a function to handle data returned by item.insertOne()
+    ], function (result) {
+
+        // as router.post()'s response (res), return JSON...
+        res.json({
+
+            // for the id number of the item inserted into the database
+            id: result.insertId
+
+        }); // end res.json()
+
+    }); // end insertOne()
+
+}); // end router.post()
 
 
 // ========================================================

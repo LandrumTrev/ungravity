@@ -14,12 +14,15 @@ var orm = require("../config/orm.js");
 // ========================================================
 var item = {
 
+
+    // item.selectAll(cb)
+    // ========================================================
     // item.selectAll(cb) method takes in the (function(data) {}) callback
     // into (cb) when it is called in items_controller.js
     // so selectAll(cb) is a function that is passed a function
     // when it is called in items_controller.js by router.get("/", ...)
     selectAll: function (cb) {
-        
+
         // item.selectAll(cb) calls the orm.selectAll() database call method,
         // by passing in the "todo" table name to orm.selectAll()
         // function(res) handles (res), the data returned by orm.selectAll
@@ -33,18 +36,43 @@ var item = {
         });
     },
 
-    // The variables cols and vals are arrays.
+
+    // item.insertOne(cols, vals, cb)
+    // ========================================================
+    // called by router.post("/api/items", ...) in items_controller.js
+    // router.post() passes in hard-coded (cols) names, object (vals) form values,
+    // and a callback function (cb) to return the id as id: result.insertId
     insertOne: function (cols, vals, cb) {
+
+        // calls orm.insertOne() and passes in a hard-coded "todo" table name,
+        // as well as items_controller.js's hard-coded (cols) names (item, done),
+        // and form values (item: "text of item", done: false),
+        // and here defines a callback function
+        // to handle the data returned from orm.insertOne()'s database query
         orm.insertOne("todo", cols, vals, function (res) {
+
+            // callback simply passes data (res) returned by orm.insertOne
+            // into router.post()'s callback function(result) as its (result)
+            // where it is then passed as the (res) result of router.post() as:
+            // res.json({ id: result.insertId });
             cb(res);
+
         });
+
     },
+
+
+    // ========================================================
+
 
     updateOne: function (objColVals, condition, cb) {
         orm.updateOne("todo", objColVals, condition, function (res) {
             cb(res);
         });
     },
+
+    // ========================================================
+
 
     //   delete: function(condition, cb) {
     //     orm.delete("todo", condition, function(res) {

@@ -7,6 +7,13 @@ var app = express();
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
 
+// allow Express server to server static files from PUBLIC directory
+// is this needed? for external CSS files?
+// app.use(express.static('public'));
+// app.use('/css', express.static(__dirname + 'app/public/css'));
+// app.use(express.static(__dirname + 'app/public'));
+
+
 // Parse application body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
