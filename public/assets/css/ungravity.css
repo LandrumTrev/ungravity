@@ -14,3 +14,9 @@ body {
     font-size: 3rem;
 }
 
+.subhead {
+    color: #777;
+    font-size: 2rem;
+    font-weight: 100;
+    letter-spacing: .05rem;
+}
