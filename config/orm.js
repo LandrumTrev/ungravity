@@ -145,9 +145,12 @@ var orm = {
     });
   },
 
-
   // ========================================================
 
+
+
+  // orm.updateOne(table, objColVals, condition, cb)
+  // ========================================================
 
   // update an existing table row item
   // pass in the table name and an object of key:value pairs
