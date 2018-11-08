@@ -1,13 +1,35 @@
+
+<div id="top-bar" class="container-fluid">
+
+<div id="logotype" class="container">
+    <span class="head-light font-weight-light">un</span><span class="head-bold font-weight-bold">gravity</span>
+</div>
+
+</div>
+
 <div class="container">
 
-{{!-- <h1>ungravity</h1> --}}
+<br>
+<h2 class="subhead">add</h2>
+<form class="create-form">
 
-<span class="head-light font-weight-light">un</span><span class="head-bold font-weight-bold">gravity</span>
+    <div class="form-group input-group mb-0">
+
+        <input id="new-item" type="text" class="form-control" placeholder="Add a new item to the list" name="item">
+
+        <div class="input-group-append">
+
+        <button class="btn btn-danger btn-sm" type="submit" value="Submit">add item</button>
+
+    </div>
+</div>
+
+</form>
 
 <br>
 <h2 class="subhead">to-do</h2>
 
-<ul class="list-group">
+<ul class="list-group mb-0">
     {{#each items}}
     {{#unless done}}
     {{> items/item-block done=true}}
@@ -18,35 +40,12 @@
 <br>
 <h2 class="subhead">done</h2>
 
-<ul class="list-group">
+<ul class="list-group mb-0">
     {{#each items}}
     {{#if done}}
     {{> items/item-block done=false}}
     {{/if}}
     {{/each}}
 </ul>
-
-<br>
-<h2 class="subhead">add</h2>
-<form class="create-form">
-
-    {{!-- <div class="form-group"> --}}
-        {{!-- <button class="btn btn-primary btn-sm" type="submit" value="Submit">Add Item</button> --}}
-        {{!-- <label for="new-item">Item Name:</label> --}}
-        {{!-- <input class="w-75" type="text" id="new-item" name="item"> --}}
-    {{!-- </div> --}}
-
-    <div class="form-group input-group mb-3">
-
-        <input id="new-item" type="text" class="form-control" placeholder="Add a new item to the list" name="item">
-
-        <div class="input-group-append">
-
-        <button class="btn btn-danger btn-sm" type="submit" value="Submit">Add Item</button>
-
-    </div>
-</div>
-
-</form>
 
 </div>
