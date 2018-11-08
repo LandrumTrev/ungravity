@@ -3,3 +3,14 @@
 body {
     background-color: aliceblue;
 }
+
+.head-light {
+    color: #aaa;
+    font-size: 3rem;
+}
+
+.head-bold {
+    color: #777;
+    font-size: 3rem;
+}
+

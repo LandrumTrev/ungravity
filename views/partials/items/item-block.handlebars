@@ -1,15 +1,15 @@
-<li>
-	{{item}}
+<li class="pb-0 pt-0 pr-0 list-group-item list-group-item-action {{#if done}}list-group-item-warning{{else}}list-group-item-success{{/if}}">
+    <span class="font-weight-light">{{this.id}}.</span>
+    <span class="font-weight-bold">{{this.item}}</span>
 
-	{{!-- data-id="{{id}}" refers to the database table id of this item --}}
-	{{!-- data-newstatus="{{done}}" refers to ... --}}
-	<button class="change-status btn btn-danger btn-sm" data-id="{{id}}" data-newstatus="{{done}}">
-		{{#if done}}DO IT!{{else}}DONE!{{/if}}
-	</button>
+    {{!-- data-id="{{id}}" refers to the database table id of this item --}}
+    {{!-- data-newstatus="{{done}}" refers to ... --}}
+    <button class="font-weight-bold rounded-0 border-0 change-status btn btn-sm float-right {{#if done}}btn-outline-danger{{else}}btn-outline-primary{{/if}}" data-id="{{id}}" data-newstatus="{{done}}">{{#if done}}DID IT!{{else}}AGAIN?{{/if}}
+    </button>
 
-	{{!-- <button class="change-sleep" data-id="{{id}}" data-newsleep="{{sleep}}">
-		{{#if sleep}}SLEEP TIME!{{else}}WAKE UP!{{/if}}
-	</button> --}}
+    {{!-- <button class="change-sleep" data-id="{{id}}" data-newsleep="{{sleep}}">
+        {{#if sleep}}SLEEP TIME!{{else}}WAKE UP!{{/if}}
+    </button> --}}
 
-	{{!-- <button class="delete-cat" data-id="{{this.id}}">DELETE!</button> --}}
+    {{!-- <button class="delete-cat" data-id="{{this.id}}">DELETE!</button> --}}
 </li>

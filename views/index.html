@@ -1,13 +1,8 @@
-<div class="container">
+<h1>Items</h1>
 
-{{!-- <h1>ungravity</h1> --}}
-
-<span class="head-light font-weight-light">un</span><span class="head-bold font-weight-bold">gravity</span>
-
-<br>
 <h2>Items that are not done</h2>
 
-<ul class="list-group">
+<ul>
     {{#each items}}
     {{#unless done}}
     {{> items/item-block done=true}}
@@ -15,10 +10,9 @@
     {{/each}}
 </ul>
 
-<br>
 <h2>Items that are done</h2>
 
-<ul class="list-group">
+<ul>
     {{#each items}}
     {{#if done}}
     {{> items/item-block done=false}}
@@ -26,7 +20,6 @@
     {{/each}}
 </ul>
 
-<br>
 <h2>Add an Item</h2>
 <form class="create-form">
 
@@ -37,5 +30,3 @@
 
     <button class="btn btn-primary" type="submit" value="Submit">Add Item</button>
 </form>
-
-</div>
