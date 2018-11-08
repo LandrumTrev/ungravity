@@ -48,7 +48,7 @@ body {
 
 .todo-num {
     position: absolute;
-    left: 10px;
+    left: 35px;
     top: 2px;
     font-size: 1rem;
     margin-left: 5px;
@@ -56,7 +56,13 @@ body {
 
 .todo-name {
     position: absolute;
-    left: 50px;
+    left: 70px;
     top: 2px;
     font-size: 1rem;
+}
+
+.delete-item {
+    color: #fff;
+    margin-top: 4px;
+    margin-left: 4px;
 }

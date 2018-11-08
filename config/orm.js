@@ -185,19 +185,31 @@ var orm = {
 
   // ========================================================
 
-  //   delete: function(table, condition, cb) {
-  //     var queryString = "DELETE FROM " + table;
-  //     queryString += " WHERE ";
-  //     queryString += condition;
+  // orm.delete(), called by item.delete() in item.js, 
+  // which was called by router.delete() in items_controller.js,
+  // which was triggered by delete-item event handler in todolist.js
+  // callbacks pass the db data returned from orm.delete
+  // all the way back up the chain of function calls
+  delete: function (table, condition, cb) {
 
-  //     connection.query(queryString, function(err, result) {
-  //       if (err) {
-  //         throw err;
-  //       }
+    // initialize a variable to build a db query string 
+    // with the "todo" table name passed in as (table)
+    var queryString = "DELETE FROM " + table;
+    queryString += " WHERE ";
+    // tack the passed in (condition), like "id = 12" onto the queryString
+    queryString += condition;
 
-  //       cb(result);
-  //     });
-  //   }
+    // then make the query to the database with the constructed string
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      // if delete is successful, send db's response to item.delete()'s callback,
+      // which is passed into orm.delete() as (cb).
+      // This data is passed back up the chain of callbacks the same way.
+      cb(result);
+    });
+  }
 
 
 }; // end orm

@@ -73,12 +73,20 @@ var item = {
 
     // ========================================================
 
-
-    //   delete: function(condition, cb) {
-    //     orm.delete("todo", condition, function(res) {
-    //       cb(res);
-    //     });
-    //   }
+    // item.delete() called by items_controller.js 
+    // for a DELETE request to /api/items/:id sent by todolist.js event handler
+    // hard-codes the "todo" table name and calls orm.delete to update db
+    // pass in (condition) from router.delete, such as "id = 12"
+    // and also pass in router.delete()'s callback function as (cb)
+    delete: function (condition, cb) {
+        // call orm.delete(), pass in "todo" table name, condition, and callback
+        // this callback takes the data returned from database by orm.delete (res),
+        // and passes it back to router.delete()'s callback passed in as (cb)
+        orm.delete("todo", condition, function (res) {
+            // this passes (res) database returned data to router.delete()'s callback
+            cb(res);
+        });
+    }
 };
 
 // Export the database functions for the controller (catsController.js).

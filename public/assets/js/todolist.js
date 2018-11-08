@@ -73,20 +73,27 @@
       // ========================================================
 
 
-      // EVENT HANDLER FOR .delete-cat BUTTON
-      $(".delete-cat").on("click", function (event) {
-        var id = $(this).data("id");
+      // EVENT HANDLER FOR .delete-item BUTTON
+      $(".delete-item").on("click", function (event) {
 
-        // Send the DELETE request.
-        $.ajax("/api/cats/" + id, {
-          type: "DELETE"
-        }).then(
-          function () {
-            console.log("deleted cat", id);
-            // Reload the page to get the updated list
-            location.reload();
-          }
-        );
-      });
+          // create a variable to stand for value of data-id="{{this.id}}" value
+          // to get the database table id of the item to be deleted
+          var id = $(this).data("id");
 
+          // Send the DELETE request to router.delete() path in items_controller.js
+          // and tag the value of var id onto the call, for /api/items/:id 
+          $.ajax("/api/items/" + id, {
+              // just send type: of request, no data needed besides id in URL
+              type: "DELETE"
+          }).then(
+              // after DELETE request is sent,
+              function () {
+                  // console the deleted item's id number
+                  console.log("deleted item number " + id);
+                  // and reload the page to refresh all items
+                  location.reload();
+              }); // end promise handler function
+      }); // end .delete-item event handler
+
+      
   }); // end jQuery wrapper function

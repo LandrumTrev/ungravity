@@ -113,19 +113,22 @@ router.put("/api/items/:id", function (req, res) {
 
 // ========================================================
 
+// DELETE an item from the todo list
+// takes a call from delete-item event handler in todolist.js
+router.delete("/api/items/:id", function (req, res) {
 
-// router.delete("/api/items/:id", function(req, res) {
-//   var condition = "id = " + req.params.id;
+    // conditional-format String for the deleted item's id, example "id = 12"
+    var condition = "id = " + req.params.id;
 
-//   item.delete(condition, function(result) {
-//     if (result.affectedRows == 0) {
-//       // If no rows were changed, then the ID must not exist, so 404
-//       return res.status(404).end();
-//     } else {
-//       res.status(200).end();
-//     }
-//   });
-// });
+    item.delete(condition, function (result) {
+        if (result.affectedRows == 0) {
+            // If no rows were changed, then the ID must not exist, so 404
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
+    });
+});
 
 
 // ========================================================
