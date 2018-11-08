@@ -89,21 +89,25 @@ router.post("/api/items", function (req, res) {
 // ========================================================
 
 // PUT updates an item 
-router.put("/api/items/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
+router.put("/api/items/:id", function (req, res) {
 
-  console.log("condition", condition);
+    var condition = "id = " + req.params.id;
 
-  item.update({
-    sleepy: req.body.sleepy
-  }, condition, function(result) {
-    if (result.changedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+    console.log("condition", condition);
+
+    // String "false" needs to be converted to Boolean false
+    var doneBoolean = JSON.parse(req.body.done);
+
+    item.updateOne({
+        done: doneBoolean
+    }, condition, function (result) {
+        if (result.changedRows == 0) {
+            // If no rows were changed, then the ID must not exist, so 404
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
+    });
 });
 
 

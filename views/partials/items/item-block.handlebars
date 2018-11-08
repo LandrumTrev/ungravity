@@ -1,0 +1,15 @@
+<li>
+	{{item}}
+
+	{{!-- data-id="{{id}}" refers to the database table id of this item --}}
+	{{!-- data-newstatus="{{done}}" refers to ... --}}
+	<button class="change-status btn btn-danger btn-sm" data-id="{{id}}" data-newstatus="{{done}}">
+		{{#if done}}DO IT!{{else}}DONE!{{/if}}
+	</button>
+
+	{{!-- <button class="change-sleep" data-id="{{id}}" data-newsleep="{{sleep}}">
+		{{#if sleep}}SLEEP TIME!{{else}}WAKE UP!{{/if}}
+	</button> --}}
+
+	{{!-- <button class="delete-cat" data-id="{{this.id}}">DELETE!</button> --}}
+</li>
