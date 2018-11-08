@@ -19,9 +19,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
-	<script src="/assets/js/todolist.js"></script>
-
-	<link rel="stylesheet" href="/assets/css/ungravity.css" type="text/css" />
+	<link rel="stylesheet" href="assets/css/ungravity.css" type="text/css" />
 
 </head>
 
@@ -29,55 +27,16 @@
 
 	{{{ body }}}
 
-	<script>
-
-  // EVENT HANDLER FOR submit BUTTON
-  $(".create-form").on("submit", function (event) {
-
-      console.log("Monkeybutts!");
-
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-
-      var newItem = {
-          // put form input id="new-item" trimmed value into an object variable
-          item: $("#new-item").val().trim(),
-          // set the item's "done" value as "false" by default
-          done: false
-      };
-
-      console.log(newItem);
-
-      // POST request to router.post("/api/items", ...) in items_controller.js
-      $.ajax("/api/items",
-              // and send POST body JSON with data: value as the newItem object
-              {
-                  type: "POST",
-                  data: newItem
-              })
-
-          // .then, when POST responds by sending (res),
-          .then(function () {
-
-              // confirm creation of new item
-              console.log("created new to-do item");
-
-              // and reload the page so selectAll() can display updated list
-              location.reload();
-
-          }); // end .then promise handler function
-
-  }); // end .on("submit") event handler
-
-	</script>
-
-	<!-- POPPER JS for BOOTSTRAP -->
+		<!-- POPPER JS for BOOTSTRAP -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 	crossorigin="anonymous"></script>
 
 	<!-- BOOTSTRAP JS -->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
+
+	<script src="assets/js/todolist.js"></script>
+
 
 </body>
 </html>
