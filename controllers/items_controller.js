@@ -120,11 +120,16 @@ router.delete("/api/items/:id", function (req, res) {
     // conditional-format String for the deleted item's id, example "id = 12"
     var condition = "id = " + req.params.id;
 
+    // call the item.delete() method imported from item.js
+    // pass in the condition String for the id number, and a callback function
     item.delete(condition, function (result) {
+        // callback handles data returned by item.delete() in item.js,
+        // which gets its callback data from orm.delete in orm.js
         if (result.affectedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
+            // if no rows affected (so, nothing deleted), return 404 (not found)
             return res.status(404).end();
         } else {
+            // otherwise (if item was deleted), return 200 (everything good)
             res.status(200).end();
         }
     });

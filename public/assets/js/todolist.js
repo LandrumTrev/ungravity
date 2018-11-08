@@ -95,5 +95,5 @@
               }); // end promise handler function
       }); // end .delete-item event handler
 
-      
+
   }); // end jQuery wrapper function
