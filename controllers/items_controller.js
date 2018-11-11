@@ -1,6 +1,13 @@
-// ITEMS_CONTROLLER.JS
-// required as "routes" by server.js
+// ====================================================
+// UnGravity :: A workout checklist web app
+// MVC with MySQL, Node, Express, Handlebars and custom ORM.
+// ©2018 Richard Trevillian
+// University of Richmond (Virginia)
+// Full Stack Developer Bootcamp (July 2018)
+// ====================================================
+// ITEMS_CONTROLLER.JS - required as "routes" by server.js, 
 // controls the results returned by calls on defined routes
+// ====================================================
 
 
 // REQUIRE EXPRESS:
@@ -89,22 +96,34 @@ router.post("/api/items", function (req, res) {
 // ========================================================
 
 // PUT updates an item 
+// identifies item to update by id number passed at end of URL
 router.put("/api/items/:id", function (req, res) {
 
+    // create variable for the id passed at the end of the URL
     var condition = "id = " + req.params.id;
 
+    // log the id number passed to check it
     console.log("condition", condition);
 
-    // String "false" needs to be converted to Boolean false
+    // convert String value of done: ("true"|"false") to Boolean (true|false)
+    // grabs the Handlebars partial include swapped/opposite done: value, 
+    // in order to have it to set as the new value in the database
     var doneBoolean = JSON.parse(req.body.done);
 
+    // call the item.updateOne() method in model/item.js
+    // first item passed in as (objColVals) is an object: {done: true|false}
+    // second item passed in as (condition) is id: of item to update
+    // third item passed in as (cb) is callback function 
+    // to handle results from orm.updateOne to item.updateOne
     item.updateOne({
         done: doneBoolean
     }, condition, function (result) {
+        // callback function to handle results from orm.updateOne to item.updateOne
         if (result.changedRows == 0) {
             // If no rows were changed, then the ID must not exist, so 404
             return res.status(404).end();
         } else {
+            // otherwise if item updated, send 200, everything good
             res.status(200).end();
         }
     });

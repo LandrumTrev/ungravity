@@ -1,6 +1,12 @@
-// ITEM.JS
-// required by items_controller (defines routes) required by server.js
-// item.js methods call orm.js methods and pass in item's table name args
+// ====================================================
+// UnGravity :: A workout checklist web app
+// MVC with MySQL, Node, Express, Handlebars and custom ORM.
+// ©2018 Richard Trevillian
+// University of Richmond (Virginia)
+// Full Stack Developer Bootcamp (July 2018)
+// ====================================================
+// ITEM.JS - MODEL of MVC, calls ORM.js methods, required by items_controller.js routes
+// ====================================================
 
 
 // REQUIRE ORM:
@@ -65,8 +71,15 @@ var item = {
     // ========================================================
 
 
+    // item.updateOne(objColVals, condition, cb)
+    // ========================================================
+    // called by router.put("/api/items/:id", ...) in items_controller.js
+    // router.put grabs an id number passed at the end of a URL
     updateOne: function (objColVals, condition, cb) {
+        // item.updateOne() calls orm.updateOne(), passing along its parameters,
+        // and adding a hard-coded "todo" table name as first param passed to orm.updateOne
         orm.updateOne("todo", objColVals, condition, function (res) {
+            // callback function just passes orm.updateOne()'s result data back to the route controller
             cb(res);
         });
     },
