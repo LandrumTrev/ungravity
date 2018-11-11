@@ -1,7 +1,7 @@
 {
   "name": "ungravity",
   "version": "1.0.0",
-  "description": "A to-do checklist web app; MVC with MySQL, Node, Express, Handlebars and custom ORM.",
+  "description": "A CRUD to-do list web app; MVC with MySQL, Node, Express, Handlebars and custom ORM.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
