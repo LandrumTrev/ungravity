@@ -1,3 +1,13 @@
+// ====================================================
+// UnGravity :: A workout checklist web app
+// MVC with MySQL, Node, Express, Handlebars and custom ORM.
+// ©2018 Richard Trevillian
+// University of Richmond (Virginia)
+// Full Stack Developer Bootcamp (July 2018)
+// ====================================================
+// CONNECTION.JS - creates and initializes a connection to the database
+// ====================================================
+
 // Set up MySQL connection.
 var mysql = require("mysql");
 

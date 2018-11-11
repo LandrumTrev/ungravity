@@ -1,6 +1,14 @@
+// ====================================================
+// UnGravity :: A workout checklist web app
+// MVC with MySQL, Node, Express, Handlebars and custom ORM.
+// ©2018 Richard Trevillian
+// University of Richmond (Virginia)
+// Full Stack Developer Bootcamp (July 2018)
+// ====================================================
 // ORM.JS
 // defines generic database calls to be used by item.js (etc.)
 // which will then pass in their own specific arguments (table names)
+// ====================================================
 
 
 // REQUIRE THE DATABASE CONNECTION
@@ -11,24 +19,23 @@ var connection = require("../config/connection.js");
 
 // ========================================================
 
-
-// Helper function for SQL syntax.
-// Let's say we want to pass 3 values into the mySQL query.
-// In order to write the query, we need 3 question marks.
-// The above helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
-// ["?", "?", "?"].toString() => "?,?,?";
-
 // helper function for orm.insertOne() function
-// function takes in (num), 
+// function takes in (num), which the number (vals.length),
+// which here is 2 (req.body.item, doneBoolean)
+// and creates a number of "?" equal to vals.length
+// for use by the query String in orm.insertOne() method
 function printQuestionMarks(num) {
 
   // intialize an empty array
   var arr = [];
 
+  // for each of num (vals.length),
   for (var i = 0; i < num; i++) {
+    // push a "?" into the arr Array
     arr.push("?");
   }
 
+  // then return the arr Array as a String, like: "??"
   return arr.toString();
 }
 
@@ -38,15 +45,23 @@ function printQuestionMarks(num) {
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
+
+  // initialize an empty array
   var arr = [];
 
-  // loop through the keys and push the key/value as a string int arr
+  // for each key: in the passed in (ob), 
   for (var key in ob) {
+
+    // create a variable to stand for each key
     var value = ob[key];
+
     // check to skip hidden properties
     if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+
+      // if string with spaces, 
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
+
+        // add quotations (Lana Del Grey => 'Lana Del Grey')
         value = "'" + value + "'";
       }
       // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
