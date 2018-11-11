@@ -22,7 +22,6 @@ CREATE TABLE todo
 
 
 -- HEROKU:
-
 USE hx9rdomw5n64340s;
 
 CREATE TABLE todo (

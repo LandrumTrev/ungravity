@@ -5,7 +5,7 @@
 *Node, Express, Handlebars, MySQL, JavaScript, jQuery, custom ORM, Heroku deployment, Bootstrap, Font Awesome. MVC web application workout-tracker to-do list with CRUD functionality.*
 _________________________________________________
 
-[[UnGravity on Heroku](herokuLink)](herokuLink)
+[[UnGravity on Heroku](https://limitless-bastion-39486.herokuapp.com/)](https://limitless-bastion-39486.herokuapp.com/)
 
 _________________________________________________
 
