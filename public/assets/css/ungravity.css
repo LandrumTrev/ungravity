@@ -1,11 +1,15 @@
-/* CSS */
+/* ====================================================
+UnGravity :: A workout checklist web app
+MVC with MySQL, Node, Express, Handlebars and custom ORM.
+©2018 Richard Trevillian
+University of Richmond (Virginia)
+Full Stack Developer Bootcamp (July 2018)
+====================================================
+UNGRAVITY.CSS - custom CSS to enhance Bootstrap styles
+==================================================== */
 
 body {
     background-color: aliceblue;
-}
-
-#logotype {
-    /* margin: 0 auto; */
 }
 
 #top-bar {
