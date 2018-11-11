@@ -18,3 +18,17 @@ CREATE TABLE todo
 	item varchar(255) NOT NULL,
 	done BOOLEAN DEFAULT false
 );
+
+
+
+-- HEROKU:
+
+USE hx9rdomw5n64340s;
+
+CREATE TABLE todo (
+	id INT AUTO_INCREMENT NOT NULL ,
+	item VARCHAR(255),
+	done BOOLEAN DEFAULT false,
+	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id)
+);
