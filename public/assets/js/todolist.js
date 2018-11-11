@@ -10,11 +10,15 @@
       $(".change-status").on("click", function (event) {
 
           // variable for the data-id="" property of THIS button
+          // which is set to the item's db id: number by Handlebars
           var id = $(this).data("id");
 
           // variable for the data-newstatus="" property of THIS button
+          // which is set as the item's database value of done: by Handlebars
           var newStatus = $(this).data("newstatus");
 
+          // create an object which is {done: 0 | false} or {done: 1 | true},
+          // based on the value set
           var newStatusState = {
               done: newStatus
           };

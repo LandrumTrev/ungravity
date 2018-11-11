@@ -1,15 +1,34 @@
-<li class="p-0 list-group-item list-group-item-action {{#if done}}list-group-item-secondary{{else}}list-group-item-success{{/if}}">
+{{!-- ====================================================
+UnGravity :: A workout checklist web app
+MVC with MySQL, Node, Express, Handlebars and custom ORM.
+©2018 Richard Trevillian
+University of Richmond (Virginia)
+Full Stack Developer Bootcamp (July 2018)
+====================================================
+ITEM-BLOCK.HANDLEBARS - LI tag contents for index page ULs
+==================================================== --}}
 
+{{!-- NOTE!! index.handlebars PARTIAL INCLUDE HAS CHANGED "done" PROPERTY TO IT'S OPPOSITE true/false VALUE, --}}
+{{!-- UPON INCLUSION HERE, SO THE IF/UNLESS LOGIC HERE WILL SEEM BACKWARDS, BUT IS ACTUALLY CORRECT --}}
+{{!-- THIS WAS DONE SO THE data-newstatus="true|false" PROPERTY CAN BE SET AS THE NEW VALUE TO BE CHANGED TO, --}}
+{{!-- AND SET IN db BY THE .change-status BUTTON EVENT HANDLER IN todolist.js WHEN BUTTON IS CLICKED --}}
+
+{{!-- swap Bootstrap list-group-item colors based on DONE property (true/false) --}}
+<li class="p-0 list-group-item list-group-item-action {{#unless done}}list-group-item-secondary{{else}}list-group-item-success{{/unless}}">
+
+    {{!-- swap custom CSS font styling of id# and item text based on DONE property (true/false) --}}
     <span class="{{#if done}}todo-do{{else}}todo-fin{{/if}}">
-    <span class="todo-num font-weight-light">{{this.id}}.&nbsp;</span>
-    <span class="todo-name font-weight-bold">{{this.item}}</span>
+        {{!-- insert this.id number of #each looped item of hbsObject from items_controller.js --}}
+        <span class="todo-num font-weight-light">{{this.id}}.&nbsp;</span>
+        {{!-- insert this.item text of #each looped item of hbsObject from items_controller.js --}}
+        <span class="todo-name font-weight-bold">{{this.item}}</span>
     </span>
 
-    {{!-- data-id="{{id}}" refers to the database table id: of this item --}}
-    {{!-- data-newstatus="{{done}}" represents the done: status of the item --}}
-    <button class="change-status btn btn-sm mr-0 pr-3 font-weight-bold rounded-0 border-0 float-right {{#if done}}btn-outline-secondary{{else}}btn-outline-secondary{{/if}}" data-id="{{id}}" data-newstatus="{{done}}">{{#if done}}do it{{else}}add to list{{/if}}
-    </button>
+    {{!-- Bootstrap classes for right-side button to move item to/from to-do/done lists --}}
+    {{!-- swap text of button based on its (opposite of expected) "done:" status --}}
+    <button class="change-status btn btn-sm mr-0 pr-3 font-weight-bold rounded-0 border-0 float-right btn-outline-secondary" data-id="{{id}}" data-newstatus="{{done}}">{{#if done}}do it{{else}}add to list{{/if}}</button>
 
+    {{!-- X in circle DELETE button to the far left of each item; data-id="" used to individually label each delete button --}}
     <i class="delete-item fas fa-times-circle btn btn-sm font-weight-bold rounded-0 border-0 float-left" data-id="{{this.id}}"></i>
-    
+
 </li>

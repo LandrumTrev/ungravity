@@ -33,13 +33,13 @@ body {
     letter-spacing: .05rem;
 }
 
-.todo-do {
+.todo-fin {
     color: rgb(167, 103, 103);
     font-size: 1rem;
     margin-left: 5px;
 }
 
-.todo-fin {
+.todo-do {
     color: rgb(78, 116, 145);
     font-size: 1rem;
     margin-left: 5px;
