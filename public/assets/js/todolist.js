@@ -44,6 +44,7 @@ $(function () {
             function () {
                 console.log("changed status to", newStatus);
                 // Reload the page to get the updated list
+                $("#new-item").val("");
                 location.reload();
             }
         );
